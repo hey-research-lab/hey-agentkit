@@ -1,0 +1,106 @@
+{
+  "_note": "Synthetic: hand-written to exercise a path the live API cannot be asked for on demand. Shapes follow the SDK types and HEY's agent contract v1. Entries modelled on live ships; one self-reported update and one rolling-tag release kept as context.",
+  "request": {
+    "path": "/api/projects/musepass-musepass/timeline",
+    "params": {
+      "lens": "build",
+      "limit": 10
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "content-type": "application/json",
+      "x-hey-api-version": "1",
+      "x-request-id": "00000000-0000-4000-8000-000000000301"
+    },
+    "body": {
+      "project": {
+        "slug": "musepass-musepass",
+        "name": "musepass",
+        "url": "https://heyresearch.xyz/project/musepass-musepass"
+      },
+      "lens": "build",
+      "items": [
+        {
+          "id": "ship:00000000-0000-4000-8000-000000000011",
+          "kind": "ship",
+          "at": "2026-10-07T10:00:00.000Z",
+          "precision": "DATE",
+          "title": "Builder update: new verify guide",
+          "recordedAt": "2026-10-07T10:05:00.000Z",
+          "eventType": "ANNOUNCEMENT",
+          "verification": "SELF_REPORTED",
+          "countsAsBuilding": false,
+          "source": "builder_submission"
+        },
+        {
+          "id": "ship:4ec70ca8-a1c9-46a2-888b-f29a4f824de1",
+          "kind": "ship",
+          "at": "2026-10-02T14:13:07.000Z",
+          "precision": "WEEK",
+          "title": "Code changes, week of 2026-09-28 – 2026-10-04",
+          "recordedAt": "2026-10-03T09:40:09.410Z",
+          "discoveryLagHours": 0,
+          "eventType": "CODE_ACTIVITY",
+          "verification": "PUBLICLY_VERIFIED",
+          "countsAsBuilding": true,
+          "source": "github",
+          "codeSubstance": {
+            "verdict": "SUBSTANTIVE",
+            "classifierVersion": "commit-substance-v3",
+            "countsAsBuilding": true,
+            "commitsListed": 4,
+            "commitsRead": 2,
+            "changedCode": 2,
+            "documentationOrMaintenance": 0,
+            "substanceUnknown": 0,
+            "notRead": 2,
+            "files": {
+              "source": 3,
+              "test": 1,
+              "docs": 0,
+              "ci": 0,
+              "config": 0,
+              "lockfile": 0,
+              "generated": 0,
+              "other": 0
+            }
+          },
+          "marketAround": {
+            "before": {
+              "day": "2026-10-01",
+              "marketCapUsd": 123456,
+              "marketCapKind": "fdv",
+              "priceUsd": 0.0001
+            }
+          }
+        },
+        {
+          "id": "ship:00000000-0000-4000-8000-000000000012",
+          "kind": "ship",
+          "at": "2026-09-30T08:00:00.000Z",
+          "precision": "EXACT",
+          "title": "v1.2.0 Sell-side order book release",
+          "recordedAt": "2026-09-30T08:10:00.000Z",
+          "eventType": "RELEASE",
+          "verification": "PUBLICLY_VERIFIED",
+          "countsAsBuilding": true,
+          "source": "github_release"
+        }
+      ],
+      "totals": {
+        "ships": 3,
+        "contractSource": 0,
+        "locks": 0,
+        "resumed": 0,
+        "marketIntegrity": 0,
+        "verification": 1
+      },
+      "total": 4,
+      "truncated": true,
+      "nextCursor": "t1.2026-09-30T08:00:00.000Z.00000000-0000-4000-8000-000000000012",
+      "disclaimer": "Public, source-backed activity HEY recorded. Still Building means verified activity through a tracked market drawdown — it is not a prediction, not a ranking by price, and not investment advice. Few projects meet Still Building or Under the Radar at any time; both are strict by design, and list responses carry the counts."
+    }
+  }
+}

@@ -1,0 +1,96 @@
+{
+  "name": "@hey-research-lab/agentkit",
+  "version": "0.1.0",
+  "description": "Coinbase AgentKit action provider for HEY Research Lab: read-only research on Robinhood Chain projects — still building, what shipped, what changed, what is unknown — each answer with its evidence link.",
+  "license": "MIT",
+  "author": "HEY Research Lab",
+  "type": "module",
+  "sideEffects": false,
+  "homepage": "https://heyresearch.xyz/developers",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hey-research-lab/hey-agentkit.git"
+  },
+  "bugs": {
+    "url": "https://github.com/hey-research-lab/hey-agentkit/issues"
+  },
+  "keywords": [
+    "hey-research",
+    "robinhood-chain",
+    "agentkit",
+    "coinbase-agentkit",
+    "action-provider",
+    "ai-agents",
+    "langchain",
+    "vercel-ai-sdk",
+    "developer-tools"
+  ],
+  "engines": {
+    "node": ">=22"
+  },
+  "main": "./dist/index.cjs",
+  "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/index.d.ts",
+        "default": "./dist/index.js"
+      },
+      "require": {
+        "types": "./dist/index.d.cts",
+        "default": "./dist/index.cjs"
+      }
+    },
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "dist",
+    "README.md",
+    "LICENSE",
+    "CHANGELOG.md"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "packageManager": "pnpm@9.15.1",
+  "scripts": {
+    "build": "tsup",
+    "lint": "eslint .",
+    "typecheck": "tsc -p tsconfig.json --noEmit",
+    "test": "vitest run",
+    "scan": "node scripts/scan.mjs .",
+    "format:check": "prettier --check .",
+    "format": "prettier --write ."
+  },
+  "dependencies": {
+    "@hey-research-lab/agent-contract": "^0.2.0",
+    "@hey-research-lab/sdk": "^0.2.0",
+    "zod": "^3.24.1"
+  },
+  "peerDependencies": {
+    "@coinbase/agentkit": ">=0.10.0 <0.11.0"
+  },
+  "devDependencies": {
+    "@coinbase/agentkit": "0.10.4",
+    "@coinbase/agentkit-langchain": "0.3.0",
+    "@coinbase/agentkit-vercel-ai-sdk": "0.1.0",
+    "@eslint/js": "^9.17.0",
+    "@langchain/core": "^0.3.80",
+    "@swc/core": "^1.16.18",
+    "@types/node": "^22.10.0",
+    "ai": "^4.3.19",
+    "eslint": "^9.17.0",
+    "eslint-config-prettier": "^9.1.0",
+    "prettier": "^3.4.2",
+    "tsup": "^8.5.1",
+    "typescript": "^5.7.2",
+    "typescript-eslint": "^8.18.0",
+    "vitest": "^4.1.11"
+  },
+  "pnpm": {
+    "overrides": {
+      "esbuild": "^0.28.1"
+    }
+  }
+}

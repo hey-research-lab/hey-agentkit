@@ -1,0 +1,313 @@
+{
+  "_note": "Synthetic: hand-written to exercise a path the live API cannot be asked for on demand. Shapes follow the SDK types and HEY's agent contract v1. Changes copied from live/research.json.",
+  "request": {
+    "path": "/api/agent/what_changed",
+    "params": {
+      "days": 7,
+      "limit": 3
+    }
+  },
+  "response": {
+    "status": 200,
+    "headers": {
+      "content-type": "application/json",
+      "x-hey-api-version": "1",
+      "x-request-id": "00000000-0000-4000-8000-000000000201"
+    },
+    "body": {
+      "schema": "hey.agent-intelligence-response",
+      "schemaVersion": "1",
+      "capability": "what_changed",
+      "status": "ok",
+      "query": {
+        "chainId": 4663,
+        "days": 7,
+        "limit": 3
+      },
+      "chain": {
+        "chainId": 4663,
+        "name": "Robinhood Chain"
+      },
+      "subject": {
+        "kind": "chain"
+      },
+      "answer": {
+        "text": "In the last 7 days HEY recorded 412 changes on Robinhood Chain; 97 count as building.",
+        "contentOrigin": "derived"
+      },
+      "answerStatus": "FACT",
+      "claims": [],
+      "unknowns": [],
+      "freshness": [
+        {
+          "family": "builder_sources",
+          "observedAt": "2026-10-09T03:15:52.652Z",
+          "dataAsOf": "2026-10-09T03:15:52.652Z",
+          "freshnessStatus": "recent",
+          "staleAfterHours": 72,
+          "refresh": {
+            "job": "REFRESH_GITHUB",
+            "everyMinutes": 60,
+            "slowestMinutes": 4320,
+            "basis": {
+              "text": "Repositories, release feeds and changelogs are re-read by refresh tier (HOT hourly, WARM every 6 hours, COOL daily, COLD every 3 days); the tier follows the activity status and the last meaningful ship. A failing source backs off. A reading is stale after 72 hours, or one and a half cadences of its tier where that is longer (108 hours on COLD).",
+              "contentOrigin": "hey"
+            }
+          },
+          "nextExpectedRefresh": "2026-10-09T04:15:52.652Z"
+        },
+        {
+          "family": "activity_score",
+          "observedAt": "2026-10-09T02:21:36.583Z",
+          "dataAsOf": "2026-10-09T02:21:36.583Z",
+          "freshnessStatus": "recent",
+          "staleAfterHours": 24,
+          "refresh": {
+            "job": "RECALCULATE_SCORES",
+            "everyMinutes": 720,
+            "slowestMinutes": 720,
+            "basis": {
+              "text": "A project is due for rescoring once its score is 12 hours old (RESCORE_MIN_INTERVAL_HOURS); a newly recorded ship queues a rescore within the quarter hour. The next refresh is the latest expected time, not a promise: a backlog can delay it.",
+              "contentOrigin": "hey"
+            }
+          },
+          "nextExpectedRefresh": "2026-10-09T14:21:36.583Z"
+        },
+        {
+          "family": "usage",
+          "observedAt": null,
+          "dataAsOf": null,
+          "freshnessStatus": "unknown",
+          "staleAfterHours": 72,
+          "refresh": {
+            "job": "ROLLUP_USAGE_DAYS",
+            "everyMinutes": 360,
+            "slowestMinutes": 360,
+            "basis": {
+              "text": "Product usage is rolled up from decoded calls every 6 hours, per UTC day, for contracts in the method watch.",
+              "contentOrigin": "hey"
+            }
+          },
+          "nextExpectedRefresh": null,
+          "nextExpectedRefreshReason": "never_read"
+        },
+        {
+          "family": "peers",
+          "observedAt": "2026-10-09T02:04:01.306Z",
+          "dataAsOf": "2026-10-09T02:04:01.306Z",
+          "freshnessStatus": "recent",
+          "staleAfterHours": 36,
+          "refresh": {
+            "job": "REFRESH_PEER_CONTEXT",
+            "everyMinutes": 1440,
+            "slowestMinutes": 1440,
+            "basis": {
+              "text": "Peer cohorts are recomputed once a day.",
+              "contentOrigin": "hey"
+            }
+          },
+          "nextExpectedRefresh": "2026-10-10T02:04:01.306Z"
+        }
+      ],
+      "evidence": [
+        {
+          "id": "source:0024ace9-b9f8-43f0-9af0-191008f0a18f",
+          "receiptUrl": "https://heyresearch.xyz/api/evidence/source%3A0024ace9-b9f8-43f0-9af0-191008f0a18f",
+          "sourceUrl": "https://musepass.xyz/docs/reference/mcp"
+        },
+        {
+          "id": "sourcechange:25cfe35d-80d9-47ce-9558-981ac807dc7b",
+          "receiptUrl": "https://heyresearch.xyz/api/evidence/sourcechange%3A25cfe35d-80d9-47ce-9558-981ac807dc7b",
+          "sourceUrl": "https://musepass.xyz/docs"
+        },
+        {
+          "id": "ship:4ec70ca8-a1c9-46a2-888b-f29a4f824de1",
+          "receiptUrl": "https://heyresearch.xyz/api/evidence/ship%3A4ec70ca8-a1c9-46a2-888b-f29a4f824de1",
+          "sourceUrl": "https://github.com/musepass/musepass"
+        }
+      ],
+      "data": {
+        "scope": "chain",
+        "window": {
+          "days": 7,
+          "from": "2026-10-02T04:20:00.000Z",
+          "to": "2026-10-09T04:20:00.000Z",
+          "basis": "occurred_else_detected"
+        },
+        "types": null,
+        "total": 412,
+        "countsAsBuilding": 97,
+        "byType": [
+          {
+            "type": "build.code_activity",
+            "count": 61
+          },
+          {
+            "type": "research.source_added",
+            "count": 88
+          },
+          {
+            "type": "build.release",
+            "count": 36
+          }
+        ],
+        "shown": 3,
+        "items": [
+          {
+            "id": "source:0024ace9-b9f8-43f0-9af0-191008f0a18f:added",
+            "revision": 1,
+            "type": "research.source_added",
+            "domain": "research",
+            "occurredAt": null,
+            "precision": "OBSERVED",
+            "detectedAt": "2026-10-07T20:05:15.661Z",
+            "recordedAt": "2026-10-07T20:06:04.014Z",
+            "summary": {
+              "text": "Official source added: docs",
+              "contentOrigin": "derived"
+            },
+            "status": "FACT",
+            "countsAsBuilding": false,
+            "project": {
+              "slug": "musepass-musepass",
+              "url": "https://heyresearch.xyz/project/musepass-musepass"
+            },
+            "evidence": [
+              {
+                "id": "source:0024ace9-b9f8-43f0-9af0-191008f0a18f",
+                "receiptUrl": "https://heyresearch.xyz/api/evidence/source%3A0024ace9-b9f8-43f0-9af0-191008f0a18f",
+                "sourceUrl": "https://musepass.xyz/docs/reference/mcp"
+              }
+            ],
+            "source": "website_crawl"
+          },
+          {
+            "id": "sourcechange:25cfe35d-80d9-47ce-9558-981ac807dc7b",
+            "revision": 1,
+            "type": "research.source_changed",
+            "domain": "research",
+            "occurredAt": null,
+            "precision": "OBSERVED",
+            "detectedAt": "2026-10-07T20:02:41.346Z",
+            "recordedAt": "2026-10-07T20:06:04.014Z",
+            "summary": {
+              "text": "Links the official site declares changed: 9 added, 5 removed",
+              "contentOrigin": "derived"
+            },
+            "status": "FACT",
+            "countsAsBuilding": false,
+            "project": {
+              "slug": "musepass-musepass",
+              "url": "https://heyresearch.xyz/project/musepass-musepass"
+            },
+            "evidence": [
+              {
+                "id": "sourcechange:25cfe35d-80d9-47ce-9558-981ac807dc7b",
+                "receiptUrl": "https://heyresearch.xyz/api/evidence/sourcechange%3A25cfe35d-80d9-47ce-9558-981ac807dc7b",
+                "sourceUrl": "https://musepass.xyz/docs"
+              }
+            ],
+            "source": "official_site"
+          },
+          {
+            "id": "ship:4ec70ca8-a1c9-46a2-888b-f29a4f824de1",
+            "revision": 13,
+            "type": "build.code_activity",
+            "domain": "build",
+            "occurredAt": "2026-10-02T14:13:07.000Z",
+            "precision": "WEEK",
+            "detectedAt": "2026-10-01T00:16:50.907Z",
+            "recordedAt": "2026-10-03T09:40:09.410Z",
+            "summary": {
+              "text": "Code changes, week of 2026-09-28 – 2026-10-04",
+              "contentOrigin": "derived"
+            },
+            "status": "FACT",
+            "countsAsBuilding": true,
+            "project": {
+              "slug": "musepass-musepass",
+              "url": "https://heyresearch.xyz/project/musepass-musepass"
+            },
+            "evidence": [
+              {
+                "id": "ship:4ec70ca8-a1c9-46a2-888b-f29a4f824de1",
+                "receiptUrl": "https://heyresearch.xyz/api/evidence/ship%3A4ec70ca8-a1c9-46a2-888b-f29a4f824de1",
+                "sourceUrl": "https://github.com/musepass/musepass"
+              }
+            ],
+            "source": "github"
+          }
+        ],
+        "ledger": {
+          "projectorRanAt": "2026-10-09T04:19:00.000Z",
+          "newestRecordedAt": "2026-10-09T04:18:00.000Z",
+          "collectionStart": "2026-09-26T00:00:00.000Z",
+          "transitionsFrom": "2026-09-26T00:00:00.000Z"
+        },
+        "more": "https://heyresearch.xyz/api/changes?since=2026-10-02T04%3A20%3A00.000Z"
+      },
+      "methodology": {
+        "rules": [
+          {
+            "id": "activity.status",
+            "version": "hbm-v25"
+          },
+          {
+            "id": "research_summary",
+            "version": "summary-v1"
+          },
+          {
+            "id": "peers",
+            "version": "peers-v1"
+          },
+          {
+            "id": "agent_freshness",
+            "version": "agent-freshness-v2"
+          },
+          {
+            "id": "machine_text",
+            "version": "machine-text-v1"
+          }
+        ],
+        "url": "https://heyresearch.xyz/methodology"
+      },
+      "links": {
+        "self": "https://heyresearch.xyz/api/agent/what_changed?days=7&limit=3",
+        "canonical": [
+          "https://heyresearch.xyz/api/changes"
+        ]
+      },
+      "citation": {
+        "kind": "hey_agent_answer",
+        "capability": "what_changed",
+        "schemaVersion": "1",
+        "url": "https://heyresearch.xyz/api/agent/what_changed?days=7&limit=3",
+        "asOf": "2026-10-09T04:20:00.000Z"
+      },
+      "boundaries": {
+        "notAdvice": true,
+        "notProvided": [
+          "investment_recommendation",
+          "buy_or_sell_signal",
+          "price_prediction",
+          "price_target",
+          "position_size",
+          "leverage",
+          "stop_loss",
+          "ranking_by_expected_return",
+          "risk_score",
+          "safety_verdict",
+          "smart_money_label",
+          "wallet_pnl",
+          "wallet_profile"
+        ],
+        "marketIsContextOnly": true,
+        "disclaimer": {
+          "text": "Public, source-backed activity HEY recorded. Still Building means verified activity through a tracked market drawdown — it is not a prediction, not a ranking by price, and not investment advice. Few projects meet Still Building or Under the Radar at any time; both are strict by design, and list responses carry the counts.",
+          "contentOrigin": "hey"
+        }
+      },
+      "asOf": "2026-10-09T04:20:00.000Z"
+    }
+  }
+}
