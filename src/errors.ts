@@ -14,7 +14,7 @@ import { heyWords } from './text.js';
 /** An input this package refuses before any request is made. */
 export class InputError extends Error {
   constructor(
-    readonly code: 'invalid_project_slug' | 'invalid_address' | 'invalid_query',
+    readonly code: 'invalid_project_slug' | 'invalid_address' | 'invalid_query' | 'invalid_subject',
     message: string,
   ) {
     super(message);

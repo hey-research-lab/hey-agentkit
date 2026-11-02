@@ -15,3 +15,9 @@ export {
 export { CAIP2, CHAIN_ID, CHAIN_NAME, UnsupportedChainError } from './chain.js';
 export { ATTRIBUTION } from './text.js';
 export { VERSION } from './version.js';
+export {
+  guardAgentKitAnalytics,
+  isAgentKitAnalyticsFailure,
+  type AgentKitAnalyticsGuardOptions,
+} from './agentkit-analytics.js';
+export { ACTIVITY_STATUSES, readResearchAnswer, type ResearchAnswerRead } from './answer.js';

@@ -15,8 +15,8 @@ importers:
         specifier: ^0.2.0
         version: 0.2.0
       '@hey-research-lab/sdk':
-        specifier: ^0.2.0
-        version: 0.2.0
+        specifier: ^0.3.2
+        version: 0.3.2
       zod:
         specifier: ^3.24.1
         version: 3.25.76
@@ -492,8 +492,8 @@ packages:
     resolution: {integrity: sha512-VIlMLL05H85Hq1/rkmmgLBe+gPeDOp0sNOUgh0oTmZOhav8dgrXctZBX7jqF3d+ugf37QgUIqo7Ro4eOPFCinw==}
     engines: {node: '>=18'}
 
-  '@hey-research-lab/sdk@0.2.0':
-    resolution: {integrity: sha512-5PyePfQb2vg+QAAf+yi/4+hJWXrGPcNtNgvR/5iZKIxJgQhfRmDIqfBjURIL+gP4Mt2epylrdKMjzJey48YUHA==}
+  '@hey-research-lab/sdk@0.3.2':
+    resolution: {integrity: sha512-8zr6nR3GPhXhdFWWkRI5fZWkHdDRIcYdDHY2x3BmHXx5Xe2UZjBJqTywFGniXWS30hnD6NMc/SkMTvJ5w1z2jg==}
     engines: {node: '>=18'}
 
   '@humanfs/core@0.19.2':
@@ -5685,7 +5685,7 @@ snapshots:
     dependencies:
       zod: 3.25.76
 
-  '@hey-research-lab/sdk@0.2.0': {}
+  '@hey-research-lab/sdk@0.3.2': {}
 
   '@humanfs/core@0.19.2':
     dependencies:

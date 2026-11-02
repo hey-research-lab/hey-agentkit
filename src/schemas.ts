@@ -21,9 +21,28 @@ const project = z
   );
 
 export const ResearchProjectSchema = z
-  .object({ project, chainId })
+  .object({
+    project: project
+      .optional()
+      .describe(
+        'The project\'s HEY slug, lowercase letters, digits and hyphens (e.g. "hey-research-lab"). Give exactly one of project, address or q.',
+      ),
+    address: z
+      .string()
+      .optional()
+      .describe(
+        'A Robinhood Chain token or contract address (0x followed by 40 hex characters): HEY answers for the published project that holds it. Give exactly one of project, address or q. Prefer it when you hold the contract, since a name or ticker is not identity.',
+      ),
+    q: z
+      .string()
+      .optional()
+      .describe(
+        'A project name or $TICKER, 2–64 characters. One exact match answers; several come back as candidates, and HEY picks none. Give exactly one of project, address or q.',
+      ),
+    chainId,
+  })
   .strip()
-  .describe('Research one Robinhood Chain project on HEY.');
+  .describe('Research one Robinhood Chain project on HEY by slug, contract address or name.');
 
 export const FindProjectsSchema = z
   .object({

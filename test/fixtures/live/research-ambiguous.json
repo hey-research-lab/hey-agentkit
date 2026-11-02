@@ -1,0 +1,156 @@
+{
+  "request": {
+    "path": "/api/agent/research_project",
+    "params": {
+      "q": "inu"
+    }
+  },
+  "response": {
+    "status": 400,
+    "headers": {
+      "content-type": "application/json",
+      "x-request-id": "f4d2bf5c-80cb-43a1-a4ed-2446dea68197",
+      "x-hey-api-version": "1"
+    },
+    "body": {
+      "schema": "hey.agent-intelligence-response",
+      "schemaVersion": "1",
+      "capability": "research_project",
+      "status": "invalid_request",
+      "query": {
+        "chainId": 4663,
+        "q": "inu"
+      },
+      "chain": {
+        "chainId": 4663,
+        "name": "Robinhood Chain"
+      },
+      "subject": null,
+      "answer": {
+        "text": "More than one published project matches that name or ticker: inu, inu-447b2f, inu-833eff. HEY does not guess: send one of them as project, or the contract as address.",
+        "contentOrigin": "derived"
+      },
+      "answerStatus": "UNKNOWN",
+      "claims": [],
+      "unknowns": [],
+      "freshness": [],
+      "evidence": [],
+      "data": null,
+      "methodology": {
+        "rules": [
+          {
+            "id": "agent_freshness",
+            "version": "agent-freshness-v2"
+          },
+          {
+            "id": "machine_text",
+            "version": "machine-text-v1"
+          }
+        ],
+        "url": "https://heyresearch.xyz/methodology"
+      },
+      "links": {
+        "self": "https://heyresearch.xyz/api/agent/research_project?q=inu",
+        "canonical": []
+      },
+      "citation": null,
+      "boundaries": {
+        "notAdvice": true,
+        "notProvided": [
+          "investment_recommendation",
+          "buy_or_sell_signal",
+          "price_prediction",
+          "price_target",
+          "position_size",
+          "leverage",
+          "stop_loss",
+          "ranking_by_expected_return",
+          "risk_score",
+          "safety_verdict",
+          "smart_money_label",
+          "wallet_pnl",
+          "wallet_profile"
+        ],
+        "marketIsContextOnly": true,
+        "disclaimer": {
+          "text": "Public, source-backed activity HEY recorded. Still Building means counted ships during a market drawdown HEY itself tracked — it is not a prediction, not a ranking by price, and not investment advice. Few projects meet Still Building or Under the Radar at any time; both are strict by design, and list responses carry the counts.",
+          "contentOrigin": "hey"
+        }
+      },
+      "error": {
+        "code": "ambiguous",
+        "message": {
+          "text": "More than one published project matches that name or ticker: inu, inu-447b2f, inu-833eff. HEY does not guess: send one of them as project, or the contract as address.",
+          "contentOrigin": "derived"
+        },
+        "candidates": [
+          {
+            "slug": "inu",
+            "name": {
+              "text": "iNu",
+              "contentOrigin": "external_source",
+              "source": "project_record"
+            },
+            "url": "https://heyresearch.xyz/project/inu",
+            "token": {
+              "chainId": 4663,
+              "address": "0x63ee32ac3077d1fbd8a77ebba2a6ed4b8e9c1e18"
+            },
+            "symbol": {
+              "text": "INU",
+              "contentOrigin": "external_source",
+              "source": "project_record"
+            },
+            "activityStatus": "UNKNOWN",
+            "catalogStatus": "QUALIFIED"
+          },
+          {
+            "slug": "inu-447b2f",
+            "name": {
+              "text": "inu",
+              "contentOrigin": "external_source",
+              "source": "project_record"
+            },
+            "url": "https://heyresearch.xyz/project/inu-447b2f",
+            "token": {
+              "chainId": 4663,
+              "address": "0x447b2ffa3bc4d3aad74b6604c2dfd25ab22f2361"
+            },
+            "symbol": {
+              "text": "inu",
+              "contentOrigin": "external_source",
+              "source": "project_record"
+            },
+            "activityStatus": "UNKNOWN",
+            "catalogStatus": "QUALIFIED"
+          },
+          {
+            "slug": "inu-833eff",
+            "name": {
+              "text": "inu",
+              "contentOrigin": "external_source",
+              "source": "project_record"
+            },
+            "url": "https://heyresearch.xyz/project/inu-833eff",
+            "token": {
+              "chainId": 4663,
+              "address": "0xce6440ff428812e0c1d95323753161e109255004"
+            },
+            "symbol": {
+              "text": "INU",
+              "contentOrigin": "external_source",
+              "source": "project_record"
+            },
+            "activityStatus": "UNKNOWN",
+            "catalogStatus": "QUALIFIED"
+          }
+        ],
+        "candidatesTotal": {
+          "count": 3,
+          "atLeast": true
+        }
+      },
+      "asOf": "2026-11-02T06:12:25.524Z"
+    }
+  }
+}

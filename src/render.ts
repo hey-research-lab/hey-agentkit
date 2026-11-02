@@ -112,10 +112,36 @@ export function renderRefusal(response: HeyAgentResponse): string {
     response.status === 'not_found'
       ? ' Try find_projects with a name, ticker or contract address to get the right slug.'
       : '';
+  const candidates = response.error?.candidates ?? [];
+  const candidateLines =
+    candidates.length > 0
+      ? [
+          `Candidates (${candidates.length}; HEY picks none — ask again with one slug as project, or the contract as address):`,
+          ...candidates.map(
+            (c) =>
+              `- ${say(c.name)} · slug ${heyWords(c.slug)}${c.token ? ` · contract ${heyWords(c.token.address)}` : ''} → ${c.url}`,
+          ),
+        ]
+      : [];
   return lines(
     `Error (${heyWords(code)}): HEY could not answer — ${message}${moved}${hint}`,
+    ...candidateLines,
     sourceLine(response.links.page ?? SITE),
   );
+}
+
+/** How HEY found the project when it was asked by contract or name, never by slug. */
+function resolvedLine(response: HeyAgentResponseOf<'research_project'>): string[] {
+  const from = response.subject?.resolvedFrom;
+  if (from?.address) {
+    return [
+      `Found by contract: ${heyWords(from.address)} is tied to this project on HEY's record.`,
+    ];
+  }
+  if (from?.q) {
+    return [`Found by name: HEY's project search matched ${quote(from.q)} to this one project.`];
+  }
+  return [];
 }
 
 export function renderResearch(response: HeyAgentResponseOf<'research_project'>): string {
@@ -136,6 +162,7 @@ export function renderResearch(response: HeyAgentResponseOf<'research_project'>)
   const out: string[] = [
     `HEY research: ${say(identity.name)}${symbol} — ${identity.slug} on ${CHAIN}`,
     `Answer (${response.answerStatus}): ${say(response.answer)}`,
+    ...resolvedLine(response),
     `Project: kind ${heyWords(identity.projectKind)} · research level ${heyWords(identity.researchLevel)}${narrative} · first recorded by HEY ${identity.firstRecordedByHeyAt}`,
     'Builder state (development evidence only, never price):',
     `- Activity status: ${heyWords(b.activityStatus)} (measured: ${orUnknown(b.activityMeasured)})`,
@@ -400,7 +427,7 @@ export function renderChain(chain: HeyChain): string {
     `Last full day: ${when(chain.lastFullDay)}`,
     `About launches: ${heyWords(chain.launchesNote)}`,
     `HEY's note: ${heyWords(chain.disclaimer)}`,
-    sourceLine(`${SITE}/pulse`),
+    sourceLine(`${SITE}/`),
   );
   return out.join('\n');
 }

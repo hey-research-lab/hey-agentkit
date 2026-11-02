@@ -58,5 +58,7 @@ Every action method takes exactly one parameter, its parsed arguments — never 
 The chain constants (`src/chain.ts`) and the address rules (`src/evm.ts`) follow the HEY Research
 Lab ecosystem conventions shared by every repository in the organisation. The action-to-endpoint
 map and the agent answer shapes were last checked against HEY's public contract — the OpenAPI
-document at https://heyresearch.xyz/openapi.json, the SDK 0.2.0 types and the agent contract 0.2.0
-— on 2026-10-13; the live fixtures were recorded from the live API on 2026-10-09.
+document at https://heyresearch.xyz/openapi.json, the SDK 0.3.2 types and the agent contract 0.2.0
+— on 2026-11-02, with every action run against the live API that day; the live fixtures were
+recorded from the live API on 2026-10-09, and the `research-*` ones by address and name on
+2026-11-02.

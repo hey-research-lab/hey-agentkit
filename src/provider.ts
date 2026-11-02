@@ -13,7 +13,12 @@ import {
   type WalletProvider,
 } from '@coinbase/agentkit';
 import { safeParseAgentResponse } from '@hey-research-lab/agent-contract';
-import type { HeyAgentCapability, HeyAgentResponseOf, HeyClient } from '@hey-research-lab/sdk';
+import type {
+  HeyAgentCapability,
+  HeyAgentResponseOf,
+  HeyAgentSubjectQuery,
+  HeyClient,
+} from '@hey-research-lab/sdk';
 
 import { assertChainId, CHAIN_ID } from './chain.js';
 import { createClient, type HeyResearchConfig } from './client.js';
@@ -51,7 +56,7 @@ const BOUNDARY =
   'Read-only: no wallet, no transaction, nothing signed. The answer is HEY Research Lab evidence with provenance (evidence ids, as-of time, a heyresearch.xyz link) — not price advice, not a safety verdict, and unknown stays unknown.';
 
 export const ACTION_DESCRIPTIONS = {
-  research_project: `Research one Robinhood Chain project on HEY Research Lab: is it still building, what did it ship and when (last meaningful ship), how much meaningful building in 30 days, its Build Momentum and Still Building state, the newest changes, what HEY verified about its token contract, and what HEY does not know (unknowns, each with what not to conclude). Input: the project's HEY slug — get it first with find_projects (name or ticker) or lookup_token (contract address). Market data appears only as context. ${BOUNDARY}`,
+  research_project: `Research one Robinhood Chain project on HEY Research Lab: is it still building, what did it ship and when (last meaningful ship), how much meaningful building in 30 days, its Build Momentum and Still Building state, the newest changes, what HEY verified about its token contract, and what HEY does not know (unknowns, each with what not to conclude). Input: exactly one of project (the HEY slug), address (the token or contract, 0x…) or q (a name or $TICKER). Prefer address when you hold the contract: a name or ticker is not identity, and when several projects match HEY lists the candidates and picks none. Market data appears only as context. ${BOUNDARY}`,
   find_projects: `Find Robinhood Chain projects on HEY Research Lab by name, ticker ($TICKER) or 0x contract address. Returns up to eight matches, each with its HEY slug, contract and link, and says which are published projects, which are only launch records HEY has not researched, and which are an issuer's token. A ticker is not identity: when two projects share a name or ticker, identify them by contract address. Use it before research_project or project_timeline. ${BOUNDARY}`,
   lookup_token: `Look up a Robinhood Chain token or contract address (0x…) on HEY Research Lab: which published project it belongs to, whether that project is still building (activity status, last ship, meaningful ships in 30 days), whether the project itself names this contract (token verification), and HEY's link. An address HEY has no project for is reported as such, which is not a finding about the token. ${BOUNDARY}`,
   what_changed: `What changed on Robinhood Chain recently, from HEY Research Lab's change ledger: ships, releases, contract deployments and upgrades, activity-status moves, sources added, for all of Robinhood Chain or one project (by slug), over the last 1–30 days. Gives the true total in the window, how many count as building, counts by type, and the newest changes with their dates, precision and evidence ids. ${BOUNDARY}`,
@@ -85,6 +90,29 @@ function checkAddress(value: string): string {
     );
   }
   return candidate.toLowerCase();
+}
+
+/** Exactly one of `project`, `address` or `q`, each checked as HEY checks it. */
+function checkSubject(args: ResearchProjectArgs): HeyAgentSubjectQuery {
+  const given = (['project', 'address', 'q'] as const).filter(
+    (key) => args[key] !== undefined && args[key].trim() !== '',
+  );
+  if (given.length !== 1) {
+    throw new InputError(
+      'invalid_subject',
+      'Give exactly one of project (a HEY slug), address (a 0x contract) or q (a name or $TICKER).',
+    );
+  }
+  if (args.project !== undefined && given[0] === 'project')
+    return { project: checkSlug(args.project) };
+  if (args.address !== undefined && given[0] === 'address') {
+    return { address: checkAddress(args.address) };
+  }
+  const q = (args.q ?? '').trim();
+  if (Array.from(q).length < 2 || Array.from(q).length > 64) {
+    throw new InputError('invalid_query', 'q takes 2–64 characters.');
+  }
+  return { q };
 }
 
 /** An agent answer, checked against HEY's agent contract before it is rendered. */
@@ -121,9 +149,8 @@ export class HeyResearchActionProvider extends ActionProvider<WalletProvider> {
   async researchProject(args: ResearchProjectArgs): Promise<string> {
     try {
       checkChain(args.chainId);
-      const project = checkSlug(args.project);
       return await agentAnswer(
-        this.client.agent.answer('research_project', { project }),
+        this.client.agent.answer('research_project', checkSubject(args)),
         renderResearch,
       );
     } catch (error) {

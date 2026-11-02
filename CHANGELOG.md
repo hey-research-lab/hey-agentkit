@@ -4,6 +4,31 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the project uses
 [Semantic Versioning](https://semver.org/).
 
+## 0.2.0 — 2026-11-02
+
+- `research_project` takes exactly one of `project` (slug), `address` (a token or contract) or
+  `q` (a name or `$TICKER`), through HEY's project search. One exact match answers and says how it
+  was found ("Found by contract" / "Found by name"); several come back as `ambiguous` with their
+  candidates (slug, contract, link) and HEY picks none; a contract HEY holds no published project
+  for comes back as `not_published`, worded as a statement about HEY's index.
+- `readResearchAnswer(text)`: reads a `research_project` answer back in code (slug, activity
+  status, last meaningful ship, link; or the refusal's code and candidates), so a host can decide
+  before a model does. `ACTIVITY_STATUSES` lists HEY's statuses.
+- `guardAgentKitAnalytics()` and `isAgentKitAnalyticsFailure()`: an opt-in guard for an AgentKit
+  0.10.x issue (coinbase/agentkit#1531). AgentKit starts an analytics request on every action and
+  wallet set-up without awaiting it; when it fails (on 2026-11-02 it answers 400 to every action
+  event) Node ends the process. The guard ignores exactly that rejection and leaves every other
+  one to Node's default or the host's own listener.
+- `chain_overview` cites `https://heyresearch.xyz/` (HEY folded `/pulse` into its homepage).
+- `@hey-research-lab/sdk` ^0.3.2 (was ^0.2.0). `@hey-research-lab/agent-contract` stays ^0.2.0:
+  0.3.0 moves to zod 4. `@coinbase/agentkit` stays 0.10.4, still the newest release on npm; the
+  peer range is unchanged.
+- `examples/base-agent`: an AgentKit agent on Base that checks a Robinhood Chain project with HEY
+  before it trades, bridges to or funds its token, and proceeds, warns or refuses in code.
+- README: "For agents on Base", HEY's ERC-8004 registration on Base (agentId 1148006), and the
+  two AgentKit 0.10.4 issues (the analytics rejection; a fresh install resolving `@x402/svm`
+  2.29.0, pinned to 2.28.0 in the example).
+
 ## 0.1.0 — 2026-10-13
 
 First release.

@@ -195,6 +195,6 @@ describe('chain_overview', () => {
     expect(text).toContain('- 2026-10-09 (today, in progress): ships 0');
     expect(text).toContain('- 2026-10-08 [observed]: transactions 6137956 · transfers 13857769');
     expect(text).not.toMatch(/2665015506|3543477035|volume/i);
-    expect(text.split('\n').at(-1)).toBe(`${SOURCE}https://heyresearch.xyz/pulse`);
+    expect(text.split('\n').at(-1)).toBe(`${SOURCE}https://heyresearch.xyz/`);
   });
 });

@@ -21,7 +21,8 @@
     "experimentalDecorators": true,
     "emitDecoratorMetadata": true,
     "types": ["node"],
-    "noEmit": true
+    "noEmit": true,
+    "paths": { "@hey-research-lab/agentkit": ["./src/index.ts"] }
   },
   "include": ["src", "test", "vitest.config.ts", "vitest.setup.ts", "tsup.config.ts"]
 }
