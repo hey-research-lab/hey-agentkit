@@ -4,6 +4,17 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the project uses
 [Semantic Versioning](https://semver.org/).
 
+## 0.2.1 — unreleased (not yet on npm)
+
+- Security: the runtime `zod` moves from `^3.24.1` to `^4.6.7` (GHSA-mrhx-c7xc-m3w5, memory exhaustion
+  on large arrays, fixed only in 4.6.6). The action schemas import `zod/v3`, the zod 3 API zod 4 still
+  ships, because AgentKit 0.10.4 and its LangChain and Vercel AI extensions read zod 3 schemas; the
+  schemas, the actions and every answer are unchanged.
+- Still two zod majors in an install: `@coinbase/agentkit` itself depends on zod `^3.23.8`, and
+  `@hey-research-lab/agent-contract` stays `^0.2.0` (zod 3) until this package's recorded fixtures are
+  re-recorded against agent-contract 0.3.0, which requires the `citation` field HEY's answers now carry.
+- Development: vitest 4.1.12.
+
 ## 0.2.0 — 2026-11-02
 
 - `research_project` takes exactly one of `project` (slug), `address` (a token or contract) or

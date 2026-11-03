@@ -4,7 +4,7 @@
  * where to get it. Format checks (slug, address, chain) are made inside the
  * action, so a wrong value comes back as a sentence the agent can act on.
  */
-import { z } from 'zod';
+import { z } from 'zod/v3';
 
 const chainId = z
   .number()

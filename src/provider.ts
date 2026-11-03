@@ -48,6 +48,15 @@ import {
   type WhatChangedArgs,
 } from './schemas.js';
 
+/**
+ * AgentKit's own schema type, read off its decorator. The schemas are written with zod 4's `zod/v3` API,
+ * which is the zod 3 API AgentKit and its extensions read at run time; AgentKit's types come from its own
+ * zod 3 copy, and comparing two copies of zod's deep generic types structurally costs the type checker
+ * gigabytes. So each schema meets AgentKit's type here, once, by assertion.
+ */
+type ActionSchema = Parameters<typeof CreateAction>[0]['schema'];
+const actionSchema = (schema: object): ActionSchema => schema as ActionSchema;
+
 /** HEY's request rule for a project slug. */
 const SLUG_RE = /^[a-z0-9][a-z0-9-]{0,79}$/;
 
@@ -144,7 +153,7 @@ export class HeyResearchActionProvider extends ActionProvider<WalletProvider> {
   @CreateAction({
     name: 'research_project',
     description: ACTION_DESCRIPTIONS.research_project,
-    schema: ResearchProjectSchema,
+    schema: actionSchema(ResearchProjectSchema),
   })
   async researchProject(args: ResearchProjectArgs): Promise<string> {
     try {
@@ -161,7 +170,7 @@ export class HeyResearchActionProvider extends ActionProvider<WalletProvider> {
   @CreateAction({
     name: 'find_projects',
     description: ACTION_DESCRIPTIONS.find_projects,
-    schema: FindProjectsSchema,
+    schema: actionSchema(FindProjectsSchema),
   })
   async findProjects(args: FindProjectsArgs): Promise<string> {
     try {
@@ -179,7 +188,7 @@ export class HeyResearchActionProvider extends ActionProvider<WalletProvider> {
   @CreateAction({
     name: 'lookup_token',
     description: ACTION_DESCRIPTIONS.lookup_token,
-    schema: LookupTokenSchema,
+    schema: actionSchema(LookupTokenSchema),
   })
   async lookupToken(args: LookupTokenArgs): Promise<string> {
     try {
@@ -194,7 +203,7 @@ export class HeyResearchActionProvider extends ActionProvider<WalletProvider> {
   @CreateAction({
     name: 'what_changed',
     description: ACTION_DESCRIPTIONS.what_changed,
-    schema: WhatChangedSchema,
+    schema: actionSchema(WhatChangedSchema),
   })
   async whatChanged(args: WhatChangedArgs): Promise<string> {
     try {
@@ -217,7 +226,7 @@ export class HeyResearchActionProvider extends ActionProvider<WalletProvider> {
   @CreateAction({
     name: 'project_timeline',
     description: ACTION_DESCRIPTIONS.project_timeline,
-    schema: ProjectTimelineSchema,
+    schema: actionSchema(ProjectTimelineSchema),
   })
   async projectTimeline(args: ProjectTimelineArgs): Promise<string> {
     try {
@@ -237,7 +246,7 @@ export class HeyResearchActionProvider extends ActionProvider<WalletProvider> {
   @CreateAction({
     name: 'chain_overview',
     description: ACTION_DESCRIPTIONS.chain_overview,
-    schema: ChainOverviewSchema,
+    schema: actionSchema(ChainOverviewSchema),
   })
   async chainOverview(args: ChainOverviewArgs): Promise<string> {
     try {

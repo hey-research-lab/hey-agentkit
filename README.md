@@ -234,7 +234,8 @@ Our own quality gate stays authoritative: this package relays our records and de
 
 Runtime dependencies: `@hey-research-lab/sdk`, `@hey-research-lab/agent-contract` (our own
 packages: the API client, and the contract check and text folding for agent answers) and `zod`
-(the action schemas AgentKit requires). `@coinbase/agentkit` is a peer dependency.
+4.6.7 or later, whose `zod/v3` API writes the action schemas, because AgentKit 0.10 and its LangChain and
+Vercel AI extensions read zod 3 schemas. `@coinbase/agentkit` is a peer dependency.
 
 ## What it does NOT prove
 
