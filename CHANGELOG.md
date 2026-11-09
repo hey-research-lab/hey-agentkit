@@ -4,7 +4,7 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the project uses
 [Semantic Versioning](https://semver.org/).
 
-## 0.2.1 — unreleased (not yet on npm)
+## 0.2.1 — 2026-11-03
 
 - Security: the runtime `zod` moves from `^3.24.1` to `^4.6.7` (GHSA-mrhx-c7xc-m3w5, memory exhaustion
   on large arrays, fixed only in 4.6.6). The action schemas import `zod/v3`, the zod 3 API zod 4 still
