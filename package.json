@@ -79,7 +79,7 @@
     "@langchain/core": "^0.3.80",
     "@swc/core": "^1.16.18",
     "@types/node": "^22.10.0",
-    "ai": "^4.3.19",
+    "ai": "^5.0.52",
     "eslint": "^9.17.0",
     "eslint-config-prettier": "^9.1.0",
     "prettier": "^3.4.2",
