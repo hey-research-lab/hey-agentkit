@@ -252,6 +252,8 @@ Coinbase; "AgentKit" names the framework this package plugs into.
 See [SECURITY.md](SECURITY.md). The provider makes HTTPS GET requests to `https://heyresearch.xyz`
 only, one per action call; it reads and writes no files and keeps no state.
 
+HEY Research Lab also reviews other projects' code and reports what it finds privately first: [security credits](https://github.com/hey-research-lab#security-credits).
+
 ## Contributing
 
 See [CONTRIBUTING.md](CONTRIBUTING.md): tests run offline over saved fixtures, `pnpm scan` checks
