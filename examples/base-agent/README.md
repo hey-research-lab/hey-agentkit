@@ -81,7 +81,7 @@ Remove both once AgentKit fixes them.
 
 ## About us
 
-We research one chain, Robinhood Chain (4663). Our agent is registered under ERC-8004 on Base as
+Our API answers for one chain, Robinhood Chain (4663). Our agent is registered under ERC-8004 on Base as
 [agentId 1148006](https://basescan.org/nft/0x8004a169fb4a3325136eb29fa0ceb6d2e539a432/1148006),
 and on Ethereum (56081) and Robinhood Chain (8783). See the [package README](../../README.md) for
 every action, and [heyresearch.xyz/developers](https://heyresearch.xyz/developers) for the API.

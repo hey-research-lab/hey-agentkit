@@ -20,8 +20,9 @@ is one read through the published
 
 ## For agents on Base
 
-Most AgentKit agents run on Base. We research one chain, Robinhood Chain, and that does not
-change. What we offer a Base agent is one check: **before you trade a Robinhood Chain project's
+Most AgentKit agents run on Base. Our API and this provider answer for Robinhood Chain only (Base
+builders have a hand-checked preview at [heyresearch.xyz/base](https://heyresearch.xyz/base), not
+in the API yet). What we offer a Base agent is one check: **before you trade a Robinhood Chain project's
 token, bridge to it or fund it, ask whether the project is still building, with sources.**
 
 - Pass the token's contract address to `research_project` (`{ address: '0x…' }`). We answer with
@@ -49,7 +50,7 @@ of development, not a view on a token's price, and not a safety verdict.
 
 ## Why Robinhood Chain only
 
-We research one chain: Robinhood Chain, chain id `4663` (`eip155:4663`). Every answer is about it,
+Our API and this provider answer for one chain: Robinhood Chain, chain id `4663` (`eip155:4663`). Every answer is about it,
 whatever network the agent's wallet is on. The provider's `supportsNetwork` returns `true` for any
 network, because it only reads our API over HTTPS and never touches the wallet. Each action takes
 an optional `chainId`; any value other than `4663` is refused with `unsupported_chain` before a
