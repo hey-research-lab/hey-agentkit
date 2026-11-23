@@ -4,6 +4,17 @@ All notable changes to this project are documented here. The format follows
 [Keep a Changelog](https://keepachangelog.com/en/1.1.0/), and the project uses
 [Semantic Versioning](https://semver.org/).
 
+## 0.2.2 — 2026-11-24
+
+- Security: dependency updates, development install only; the published package's runtime
+  dependencies are unchanged. `ai` moves from `^4.3.19` to `^5.0.52` (GHSA-rwvc-j5jr-mgvh; the Vercel
+  AI test runs against it). A pnpm override drops `wagmi`, which `x402` lists but never imports, and
+  with it `hono` 4.13.13 and `decode-uri-component` 0.2.2 (GHSA-qr28-fpjm-wq7f, GHSA-vcc3-ghjq-m6fr);
+  another moves `@solana/web3.js`'s `jayson` to 5.0.0, which no longer pulls `stream-json` 1.x.
+- Still open, with no patched release in reach: `elliptic` (via `@coinbase/coinbase-sdk` and ethers
+  5), `bigint-buffer` (via `@solana/spl-token`), and zod 3, which `@coinbase/agentkit` itself
+  requires.
+
 ## 0.2.1 — 2026-11-03
 
 - Security: the runtime `zod` moves from `^3.24.1` to `^4.6.7` (GHSA-mrhx-c7xc-m3w5, memory exhaustion

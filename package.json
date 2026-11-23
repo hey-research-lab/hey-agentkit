@@ -1,6 +1,6 @@
 {
   "name": "@hey-research-lab/agentkit",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "Coinbase AgentKit action provider for HEY Research Lab: read-only research on Robinhood Chain projects — still building, what shipped, what changed, what is unknown — each answer with its evidence link.",
   "license": "MIT",
   "author": "HEY Research Lab",
@@ -79,7 +79,7 @@
     "@langchain/core": "^0.3.80",
     "@swc/core": "^1.16.18",
     "@types/node": "^22.10.0",
-    "ai": "^4.3.19",
+    "ai": "^5.0.52",
     "eslint": "^9.17.0",
     "eslint-config-prettier": "^9.1.0",
     "prettier": "^3.4.2",
@@ -96,7 +96,9 @@
       "ws@>=8.0.0 <8.21.0": "^8.21.0",
       "uuid@<11.1.1": "^11.1.1",
       "langsmith": "^0.6.0",
-      "minimatch@>=7.0.0 <11.0.1": "^11.0.1"
+      "minimatch@>=7.0.0 <11.0.1": "^11.0.1",
+      "wagmi": "-",
+      "jayson": "^5.0.0"
     }
   }
 }
